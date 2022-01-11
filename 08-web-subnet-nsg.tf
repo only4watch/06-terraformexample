@@ -26,7 +26,8 @@ locals {
         #in local if your key start with string or character the value you need to define using =
         #in local if your key start with number the value sjhoul;d be in :
         "110" : "443",
-        "120" : "22"
+        "120" : "22",
+        "130" : "80"
     }
 }
 

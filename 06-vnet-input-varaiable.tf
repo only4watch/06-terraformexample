@@ -24,7 +24,7 @@ variable "app_subnet_name" {
 
 variable "app_subnet_adress" {
   type = list(string)
-  default = ["10.0.1.0/24"]
+  default = ["10.0.11.0/24"]
 }
 
 #dbsubnet and name
@@ -35,7 +35,7 @@ variable "db_subnet_name" {
 
 variable "db_subnet_adress" {
   type = list(string)
-  default = ["10.0.1.0/24"]
+  default = ["10.0.21.0/24"]
 }
 
 #bastion subnet and name
@@ -47,7 +47,7 @@ variable "bastion_subnet_name" {
 
 variable "bastion_subnet_adress" {
   type = list(string)
-  default = ["10.0.1.0/24"]
+  default = ["10.0.100.0/24"]
 }
 
 

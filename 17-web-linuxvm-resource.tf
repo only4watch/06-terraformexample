@@ -1,6 +1,6 @@
 #localblock block for custom data
 locals {
-web_custom_data == <<CUSTOM_DATA
+web_custom_data = <<CUSTOM_DATA
 #!/bin/sh
 #sudo yum update -y
 sudo yum install -y httpd
@@ -25,13 +25,14 @@ resource "azurerm_linux_virtual_machine" "web_linuxvm" {
   location            = azurerm_resource_group.rg.location
   size                = "Standard_DS1_v2"
   admin_username      = "azureuser"
+ # admin_password = "Azure@123456789"
   network_interface_ids = [
     azurerm_network_interface.web_linuxvm_nic.id,
   ]
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = filebase64("{path.module}/ssh-keys/terraform-azure.pub")
+    public_key = file("~/.ssh/id_rsa.pub")
   }
 
   os_disk {
@@ -46,5 +47,5 @@ resource "azurerm_linux_virtual_machine" "web_linuxvm" {
     version   = "latest"
   }
   #custom_data = filebase64("{path.module}/app-scripts/redhat-webvm-script.sh")
-  custom_data = filebase64(local.web_custom_data)
+  custom_data = base64encode(local.web_custom_data)
 }
